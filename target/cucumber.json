@@ -1,0 +1,59 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 2671683824,
+              "status": "passed"
+            },
+            "match": {
+              "location": "SetUp.setupTest(Scenario)"
+            }
+          }
+        ],
+        "line": 4,
+        "name": "Title of your scenario",
+        "description": "",
+        "id": "title-of-your-feature;title-of-your-scenario",
+        "after": [
+          {
+            "result": {
+              "duration": 4231351102,
+              "status": "passed"
+            },
+            "match": {
+              "location": "SetUp.tearDown(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 7478068137,
+              "status": "passed"
+            },
+            "output": [
+              ""
+            ],
+            "line": 5,
+            "name": "User is navigated to Addidas webpage",
+            "match": {
+              "location": "StepDefination.user_is_navigated_to_Addidas_webpage()"
+            },
+            "keyword": "Given "
+          }
+        ]
+      }
+    ],
+    "name": "Title of your feature",
+    "description": "I want to use this template for my feature file",
+    "id": "title-of-your-feature",
+    "keyword": "Feature",
+    "uri": "src/test/resources/Demo.feature"
+  }
+]
