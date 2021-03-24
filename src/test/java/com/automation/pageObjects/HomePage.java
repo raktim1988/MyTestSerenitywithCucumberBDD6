@@ -13,7 +13,19 @@ public class HomePage {
 	
 	@FindBy(xpath="//button[@aria-label='Close']")
 	public WebElement popupCloseBtn;
+
+	@FindBy(xpath="//a[@data-auto-id='logo']")
+	public WebElement logoIcon;
 	
-	
-	
+	@FindBy(xpath ="//a[contains(@href, 'https://www.adidas.co.uk/running')]" )
+	public  WebElement runningLink;
+
+	@FindBy(xpath="//input[@value='GB']/..//span")
+	public WebElement ukBtn;
+
+	@FindBy(xpath="//button[@aria-label='Go']")
+	public WebElement goBtn;
+
+	@FindBy(xpath="//button/span[contains(text(),'Accept tracking')]")
+	public WebElement acceptTrackBtn;
 }

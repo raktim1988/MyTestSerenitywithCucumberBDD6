@@ -18,6 +18,7 @@ import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.function.Function;
 import java.util.NoSuchElementException;
 
 import org.apache.commons.codec.binary.Base64;
@@ -40,16 +41,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
-//import org.testng.AssertJUnit;
 import org.junit.Assert;
-
-//import com.automation.test.KCARE_Home;
 import com.automation.test.SetUp;
-/*import com.target.objects.HomePageObjects;
-import com.target.objects.PensionPageObjects;*/
-import com.thoughtworks.selenium.SeleniumException;
 
-//import junit.framework.Assert;
 
 
 public class ActionMethods {
@@ -77,16 +71,6 @@ public class ActionMethods {
 		}
 	}
 	
-	public void sync1(WebDriver driver, WebElement element) {
-		try {
-			Wait<WebDriver> wait = new WebDriverWait(driver, 100)
-					.ignoring(NoSuchElementException.class);
-			wait.until(ExpectedConditions.visibilityOf(element));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 	public void syncClickable(WebDriver driver, WebElement element) {
 		try {
 			Wait<WebDriver> wait = (WebDriverWait) new WebDriverWait(driver, 100)
@@ -144,10 +128,7 @@ public class ActionMethods {
 			Assert.assertTrue("Object does Not exist", false);
 			System.out.println("Object Not exists");
 			e.printStackTrace();
-		} catch (SeleniumException e) {
-			System.out.println("Selenium Exception: " + e.getMessage());
-			e.printStackTrace();
-		} catch (WebDriverException e) {
+		}  catch (WebDriverException e) {
 			System.out.println("Webdriver Exception: " + e.getMessage());
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -179,40 +160,9 @@ public class ActionMethods {
 		dropDown.selectByVisibleText(visibleText);
 
 	}
-	
-	
-	
-	
 
-	public boolean containsText(WebDriver driver,String str)
-	{
-		try{
-			String containsObject = "//*[contains(text(),'" + str + "')]";
-			new WebDriverWait(driver,30).until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(containsObject)));
-			return true;
-		}
-		catch (Exception e) {
-			System.out.println("Text : " + str + " is not present in the view");
-			return false;
-		}
-		
-	}
-	
-	public boolean exactText(WebDriver driver, String str) {
 
-		try {
-			String exactobjects = "//*[text()='" + str + "')]";
-			new WebDriverWait(driver, 30)
-					.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(exactobjects)));
-			return true;
 
-		} catch (Exception e) {
-			System.out.println("Exact Text : " + str + " is not present in the view");
-			return false;
-		}
-
-	}
-	
 	public void scrolldown(WebDriver driver) {
 
 		JavascriptExecutor js = (JavascriptExecutor)driver;
@@ -590,8 +540,9 @@ public class ActionMethods {
 		}
 		return fileNameList;
 	}
-	
-	public void pageLaodWait(final WebDriver driver)
+
+	//Important method
+	public void pageLoadWait(final WebDriver driver)
 	{
 		
 		WebDriverWait wait = new WebDriverWait(driver, 180);

@@ -11,20 +11,15 @@ import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions(
 		
-		features= {"src/test/resources/Demo.feature"},
+		features= {"src/test/resources/TestAssignment.feature"},
 				 plugin = { 
 						    "html:target/cucumber-html-report",
-						    "json:target/cucumber.json"
+						    "json:target/cucumber.json",
 						        },
 				 glue ={"com/automation/test"},strict = true,
-				   dryRun= false,monochrome = true, snippets= SnippetType.CAMELCASE)
-		
-		  
-		
-public class RunnerTest {
-		
+				dryRun= false,monochrome = true, snippets= SnippetType.CAMELCASE)
 
 		
-	 
+public class RunnerTest {
 
 }

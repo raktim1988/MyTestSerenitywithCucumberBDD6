@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.util.Date;
 import java.util.Properties;
 
+import gherkin.lexer.Pa;
 import org.apache.log4j.xml.DOMConfigurator;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.OutputType;
@@ -31,41 +32,33 @@ import cucumber.api.java.Before;
 public class SetUp {
 	
 public static WebDriver driver;
-	
 
-public static HomePage homePageObj;
-	
-	
-	
-	
-	public static Actions action;
+   //Page Object details
+   public static HomePage homePageObj;
 	public static String message = "";
-	FileOutputStream fop = null;
+	public static ProductPage productPageObj;
+	public static ProductSelectionPage productSelectionPage;
+	public static BagPage bagPage;
+	public static CheckOutPage checkOutPage;
+	public static CollectionPage collectionPage;
+
 	public static String ScenarioName;
-	static Scenario Sc;
-	File file;
-	public static byte[][] screenshotsArray = new byte[10][10000];
-	public static Date date;
-	public static String BrowserName = "";
+	static Scenario scenario;
+
 	public static Properties data = null;
-	static int i=0;
-	
+	//Logging details
 	static{
 		DOMConfigurator.configure("log4j.xml");
 	}
+
 	@Before
-	
-	
 	public static void setupTest(Scenario scenario) throws Exception
 	{
-		System.out.println(i);
-	
-		Sc = scenario; 
 		ScenarioName =scenario.getName();
 		data =PropertiesFile.readPropertiesFile();
 		String browser = data.getProperty("Browser");
 		
-	/////****************************Chrome Setup********************************/////////////////////////////	
+	/////****************************Chrome Browser Setup********************************/////////////////////////////
 		
 		if(browser.contains("chrome"))	
 		{	
@@ -83,41 +76,46 @@ public static HomePage homePageObj;
 			options.addArguments("--disable-default-apps");
 			options.addArguments("test-type=browser");
 			options.addArguments("disable-infobars");
-			options.setExperimentalOption("useAutomationExtension", false);
 			DesiredCapabilities cap = new DesiredCapabilities();
 			cap.setCapability(ChromeOptions.CAPABILITY, options);
 			driver =  new ChromeDriver(cap);
+
+
 		
 		}	
-	/////////**************************PhantomJs Setup*************************************//////////////////////////
+	/////////**************************IE Browser Setup*************************************//////////////////////////
 		
 		else
 		{
-			DesiredCapabilities caps = new DesiredCapabilities();
-			caps.setJavascriptEnabled(true);
-			caps.setCapability("takesScreenshot", true);
-			caps.setCapability(
-					PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY,
-					"\\phantomjs.exe"
-			);
-			WebDriver driver = new PhantomJSDriver(caps);
-		}  
 
-		
+			{
+				System.setProperty("webdriver.ie.driver",System.getProperty("user.dir")+"/exe/IEDriverServer.exe" );
+
+				DesiredCapabilities capab = DesiredCapabilities.internetExplorer();
+				capab.setCapability(
+						InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
+						true);
+				capab.setCapability(InternetExplorerDriver.ENABLE_PERSISTENT_HOVERING, false);
+				capab.setCapability(InternetExplorerDriver.REQUIRE_WINDOW_FOCUS, true);
+				capab.setCapability(InternetExplorerDriver.UNEXPECTED_ALERT_BEHAVIOR, true);
+				capab.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+				capab.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
+				capab.setCapability(InternetExplorerDriver.IE_SWITCHES, true);
+				driver = new InternetExplorerDriver(capab);
+			}
+		}
+
+		//Initialize all web elements with the Page Objects
 		homePageObj=PageFactory.initElements(driver, HomePage.class);
+		productPageObj = PageFactory.initElements(driver, ProductPage.class);
+		productSelectionPage = PageFactory.initElements(driver, ProductSelectionPage.class);
+		checkOutPage =  PageFactory.initElements(driver, CheckOutPage.class);
+		collectionPage = PageFactory.initElements(driver, CollectionPage.class);
+		bagPage = PageFactory.initElements(driver, BagPage.class);
 
-		
 		driver.manage().deleteAllCookies();
-		
-		driver.manage().window().maximize();
-		
-		action = new Actions(driver);
-		
-		Capabilities cap1 = ((RemoteWebDriver) driver).getCapabilities();
-		BrowserName = cap1.getBrowserName().toLowerCase();
-		
-		System.out.println("BrowserName == "+BrowserName);
 
+		driver.manage().window().maximize();
 		
 	}
 	
@@ -131,14 +129,10 @@ public static HomePage homePageObj;
 			byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
 			result.write(message);
 			result.embed(screenshot, "image/png");
-			
-		
 		}
 		result.write(message);
 		driver.close();
 		driver.quit();
-		
-		Thread.sleep(1000);
 	}
 	
 
