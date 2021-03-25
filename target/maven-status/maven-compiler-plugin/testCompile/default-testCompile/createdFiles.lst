@@ -1,6 +1,7 @@
 com\automation\test\RunnerTest.class
 com\automation\utilities\PageURLConstants.class
 com\automation\test\StepDefinition.class
+com\automation\pageObjects\DeliveryPage.class
 com\automation\utilities\PropertiesFile.class
 com\automation\pageObjects\BagPage.class
 com\automation\utilities\ActionMethods$1.class
@@ -11,4 +12,3 @@ com\automation\utilities\ActionMethods.class
 com\automation\pageObjects\CheckOutPage.class
 com\automation\pageObjects\CollectionPage.class
 com\automation\pageObjects\ProductPage.class
-com\automation\utilities\UpdateProperties.class

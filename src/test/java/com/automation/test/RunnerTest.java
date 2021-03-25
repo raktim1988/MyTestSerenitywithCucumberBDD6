@@ -16,7 +16,7 @@ import cucumber.api.junit.Cucumber;
 						    "html:target/cucumber-html-report",
 						    "json:target/cucumber.json",
 						        },
-				 glue ={"com/automation/test"},strict = true,
+				 glue ={"com/automation/test/"},strict = true,
 				dryRun= false,monochrome = true, snippets= SnippetType.CAMELCASE)
 
 		

@@ -7,14 +7,14 @@ formatter.feature({
   "keyword": "Feature"
 });
 formatter.before({
-  "duration": 6204572700,
+  "duration": 1726724200,
   "status": "passed"
 });
 formatter.scenario({
   "line": 4,
-  "name": "Product Shopping End to End",
+  "name": "Product Shopping-Adding item to Bag",
   "description": "",
-  "id": "adidas-qa-assignment;product-shopping-end-to-end",
+  "id": "adidas-qa-assignment;product-shopping-adding-item-to-bag",
   "type": "scenario",
   "keyword": "Scenario"
 });
@@ -50,7 +50,7 @@ formatter.step({
 });
 formatter.step({
   "line": 11,
-  "name": "Bag is properly populated",
+  "name": "Customers Bag is properly populated",
   "keyword": "When "
 });
 formatter.step({
@@ -58,70 +58,131 @@ formatter.step({
   "name": "Click to check the Your Bag page",
   "keyword": "Then "
 });
+formatter.step({
+  "line": 13,
+  "name": "Customer checks out",
+  "keyword": "When "
+});
+formatter.step({
+  "line": 14,
+  "name": "Verify if Customer is on Delivery page",
+  "keyword": "Then "
+});
+formatter.step({
+  "line": 15,
+  "name": "Customer selects From A Collection Point",
+  "keyword": "Then "
+});
+formatter.step({
+  "line": 16,
+  "name": "Enter location as \"London\"",
+  "keyword": "Then "
+});
+formatter.step({
+  "line": 17,
+  "name": "Verify the correct collection points is selected",
+  "keyword": "And "
+});
 formatter.match({
   "location": "StepDefinition.user_is_navigated_to_Adidas_webpage()"
 });
 formatter.result({
-  "duration": 13271764300,
+  "duration": 6496856900,
   "status": "passed"
 });
 formatter.match({
   "location": "StepDefinition.click_on_the_running_link()"
 });
 formatter.result({
-  "duration": 5141660100,
+  "duration": 3370088100,
   "status": "passed"
 });
 formatter.match({
   "location": "StepDefinition.user_Clicks_on_the_first_product()"
 });
 formatter.result({
-  "duration": 4051969400,
+  "duration": 1556448300,
   "status": "passed"
 });
 formatter.match({
   "location": "StepDefinition.user_is_navigated_to_Product_Page()"
 });
 formatter.result({
-  "duration": 5908637700,
+  "duration": 1982570000,
   "status": "passed"
 });
 formatter.match({
   "location": "StepDefinition.user_Clicks_on_the_Shoe_Size()"
 });
 formatter.result({
-  "duration": 514200600,
+  "duration": 161100900,
   "status": "passed"
 });
 formatter.match({
   "location": "StepDefinition.user_Adds_the_item_to_the_Bag()"
 });
 formatter.result({
-  "duration": 314722500,
+  "duration": 154395300,
   "status": "passed"
 });
 formatter.match({
   "location": "StepDefinition.bag_is_properly_populated()"
 });
 formatter.result({
-  "duration": 2667955400,
-  "error_message": "java.lang.AssertionError: expected:\u003c1\u003e but was:\u003c[[ChromeDriver: chrome on WINDOWS (e3ec25396b86f8c39f5c2377352614bf)] -\u003e xpath: //div[@class\u003d\u0027info___1Gm7E\u0027]/div[contains(text(), \u0027Quantity:\u0027)]]\u003e\r\n\tat org.junit.Assert.fail(Assert.java:88)\r\n\tat org.junit.Assert.failNotEquals(Assert.java:743)\r\n\tat org.junit.Assert.assertEquals(Assert.java:118)\r\n\tat org.junit.Assert.assertEquals(Assert.java:144)\r\n\tat com.automation.test.StepDefinition.bag_is_properly_populated(StepDefinition.java:134)\r\n\tat ✽.When Bag is properly populated(src/test/resources/TestAssignment.feature:11)\r\n",
-  "status": "failed"
+  "duration": 2259439600,
+  "status": "passed"
 });
 formatter.match({
   "location": "StepDefinition.click_to_check_the_Your_Bag_page()"
 });
 formatter.result({
-  "status": "skipped"
+  "duration": 1210122200,
+  "status": "passed"
 });
-formatter.write("cucumber.runtime.ScenarioImpl@302edb74");
-formatter.write("failed");
-formatter.write("ScreenShot taken for failed step ");
-formatter.write("");
-formatter.embedding("image/png", "embedded0.png");
+formatter.match({
+  "location": "StepDefinition.customer_checks_out()"
+});
+formatter.result({
+  "duration": 231958800,
+  "status": "passed"
+});
+formatter.match({
+  "location": "StepDefinition.verify_if_Customer_is_on_Delivery_page()"
+});
+formatter.result({
+  "duration": 992126000,
+  "status": "passed"
+});
+formatter.match({
+  "location": "StepDefinition.customer_selects_From_A_Collection_Point()"
+});
+formatter.result({
+  "duration": 243043400,
+  "status": "passed"
+});
+formatter.match({
+  "arguments": [
+    {
+      "val": "London",
+      "offset": 19
+    }
+  ],
+  "location": "StepDefinition.enter_location_as(String)"
+});
+formatter.result({
+  "duration": 407865100,
+  "status": "passed"
+});
+formatter.match({
+  "location": "StepDefinition.verify_the_correct_collection_points_is_selected()"
+});
+formatter.result({
+  "duration": 2914151700,
+  "status": "passed"
+});
 formatter.write("");
 formatter.after({
-  "duration": 2204098700,
+  "duration": 1542895500,
   "status": "passed"
 });
 });
