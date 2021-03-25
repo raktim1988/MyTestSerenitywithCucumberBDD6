@@ -80,7 +80,7 @@ public class ActionMethods {
     //Important method - wait until the driver with JS is ready
     public void pageLoadWait(final WebDriver driver) {
 
-        WebDriverWait wait = new WebDriverWait(driver, 30);
+        WebDriverWait wait = new WebDriverWait(driver, 180);
         wait.until(new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver wdriver) {
                 return ((JavascriptExecutor) driver).executeScript(
