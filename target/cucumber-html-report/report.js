@@ -7,7 +7,7 @@ formatter.feature({
   "keyword": "Feature"
 });
 formatter.before({
-  "duration": 1726724200,
+  "duration": 1821178800,
   "status": "passed"
 });
 formatter.scenario({
@@ -87,77 +87,77 @@ formatter.match({
   "location": "StepDefinition.user_is_navigated_to_Adidas_webpage()"
 });
 formatter.result({
-  "duration": 6496856900,
+  "duration": 6986637900,
   "status": "passed"
 });
 formatter.match({
   "location": "StepDefinition.click_on_the_running_link()"
 });
 formatter.result({
-  "duration": 3370088100,
+  "duration": 3237494500,
   "status": "passed"
 });
 formatter.match({
   "location": "StepDefinition.user_Clicks_on_the_first_product()"
 });
 formatter.result({
-  "duration": 1556448300,
+  "duration": 1738000400,
   "status": "passed"
 });
 formatter.match({
   "location": "StepDefinition.user_is_navigated_to_Product_Page()"
 });
 formatter.result({
-  "duration": 1982570000,
+  "duration": 1893279000,
   "status": "passed"
 });
 formatter.match({
   "location": "StepDefinition.user_Clicks_on_the_Shoe_Size()"
 });
 formatter.result({
-  "duration": 161100900,
+  "duration": 152422900,
   "status": "passed"
 });
 formatter.match({
   "location": "StepDefinition.user_Adds_the_item_to_the_Bag()"
 });
 formatter.result({
-  "duration": 154395300,
+  "duration": 108551900,
   "status": "passed"
 });
 formatter.match({
   "location": "StepDefinition.bag_is_properly_populated()"
 });
 formatter.result({
-  "duration": 2259439600,
+  "duration": 2004847000,
   "status": "passed"
 });
 formatter.match({
   "location": "StepDefinition.click_to_check_the_Your_Bag_page()"
 });
 formatter.result({
-  "duration": 1210122200,
+  "duration": 1170979800,
   "status": "passed"
 });
 formatter.match({
   "location": "StepDefinition.customer_checks_out()"
 });
 formatter.result({
-  "duration": 231958800,
+  "duration": 252173700,
   "status": "passed"
 });
 formatter.match({
   "location": "StepDefinition.verify_if_Customer_is_on_Delivery_page()"
 });
 formatter.result({
-  "duration": 992126000,
+  "duration": 1011713500,
   "status": "passed"
 });
 formatter.match({
   "location": "StepDefinition.customer_selects_From_A_Collection_Point()"
 });
 formatter.result({
-  "duration": 243043400,
+  "duration": 197181900,
   "status": "passed"
 });
 formatter.match({
@@ -170,19 +170,19 @@ formatter.match({
   "location": "StepDefinition.enter_location_as(String)"
 });
 formatter.result({
-  "duration": 407865100,
+  "duration": 359858400,
   "status": "passed"
 });
 formatter.match({
   "location": "StepDefinition.verify_the_correct_collection_points_is_selected()"
 });
 formatter.result({
-  "duration": 2914151700,
+  "duration": 3521113600,
   "status": "passed"
 });
 formatter.write("");
 formatter.after({
-  "duration": 1542895500,
+  "duration": 1693743500,
   "status": "passed"
 });
 });

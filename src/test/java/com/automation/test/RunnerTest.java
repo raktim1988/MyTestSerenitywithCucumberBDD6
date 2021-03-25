@@ -21,5 +21,8 @@ import cucumber.api.junit.Cucumber;
 
 		
 public class RunnerTest {
+	public static void generateReport() {
+
+	}
 
 }
