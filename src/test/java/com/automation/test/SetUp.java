@@ -75,27 +75,6 @@ public static WebDriver driver;
 
 		
 		}	
-	/////////**************************IE Browser Setup*************************************//////////////////////////
-		
-/*		else
-		{
-
-			{
-				System.setProperty("webdriver.ie.driver",System.getProperty("user.dir")+"/exe/IEDriverServer.exe" );
-
-				DesiredCapabilities capab = DesiredCapabilities.internetExplorer();
-				capab.setCapability(
-						InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
-						true);
-				capab.setCapability(InternetExplorerDriver.ENABLE_PERSISTENT_HOVERING, false);
-				capab.setCapability(InternetExplorerDriver.REQUIRE_WINDOW_FOCUS, true);
-				capab.setCapability(InternetExplorerDriver.UNEXPECTED_ALERT_BEHAVIOR, true);
-				capab.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
-				capab.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
-				capab.setCapability(InternetExplorerDriver.IE_SWITCHES, true);
-				driver = new InternetExplorerDriver(capab);
-			}
-		}*/
 
 		//Initialize all web elements with the Page Objects
 		homePageObj=PageFactory.initElements(driver, HomePage.class);
@@ -107,9 +86,7 @@ public static WebDriver driver;
 		deliveryPage = PageFactory.initElements(driver, DeliveryPage.class);
 
 		driver.manage().deleteAllCookies();
-
 		driver.manage().window().maximize();
-		
 	}
 	
 	@After()
