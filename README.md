@@ -5,15 +5,20 @@ Framework used :
 
     Selenium with Cucumber BDD : Feature driven testing
 
-    Surefire Plugin for reporting
+    Surefire Plugin for reporting[Sample Attached] 
+    ![image](https://user-images.githubusercontent.com/48660668/112558444-12515980-8dcf-11eb-9b21-ae18e337d33c.png)
 
     log4j for Logging
-
-    GitHub actions for basic CI integration
 
 Git Repository Link:
 
     https://github.com/raktim1988/TestAssignmentAdidas
+
+Addiitonal implementation:
+
+    CI integration with Jenkins; hosted in my localhost[Sample Report]
+     
+    ![image](https://user-images.githubusercontent.com/48660668/112558318-c43c5600-8dce-11eb-970e-606ad70de697.png)
 
 
 Observations:
