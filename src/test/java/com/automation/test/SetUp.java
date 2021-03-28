@@ -1,5 +1,8 @@
 package com.automation.test;
 
+import java.awt.*;
+import java.io.File;
+import java.net.URI;
 import java.util.Properties;
 
 import org.apache.log4j.xml.DOMConfigurator;
@@ -18,10 +21,12 @@ import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 
+/**
+ * Author:Raktim Biswas
+ * Setting up the Framework
+ */
 public class SetUp {
-
     public static WebDriver driver;
-
     //Page Object details
     public static HomePage homePageObj;
     public static String message = "";
@@ -32,7 +37,6 @@ public class SetUp {
     public static CollectionPage collectionPage;
     public static DeliveryPage deliveryPage;
     public static String ScenarioName;
-    static Scenario scenario;
 
     public static Properties data = null;
 
@@ -65,12 +69,14 @@ public class SetUp {
             options.addArguments("test-type=browser");
             options.addArguments("disable-infobars");
             options.setExperimentalOption("useAutomationExtension", false);
+            //To disable the pop-up: Chrome browser is controlled by Automation Software
             options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
             DesiredCapabilities cap = new DesiredCapabilities();
             cap.setCapability(ChromeOptions.CAPABILITY, options);
             driver = new ChromeDriver(cap);
 
         }
+        //To improve: Multiple browser support
 
         //Initialize all web elements with the Page Objects
         homePageObj = PageFactory.initElements(driver, HomePage.class);
@@ -98,7 +104,5 @@ public class SetUp {
         result.write(message);
         driver.close();
         driver.quit();
+        }
     }
-
-
-}

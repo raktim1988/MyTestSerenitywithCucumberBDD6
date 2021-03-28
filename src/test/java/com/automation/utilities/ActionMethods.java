@@ -19,8 +19,6 @@ import java.util.NoSuchElementException;
  */
 public class ActionMethods {
 
-    static Logger Log = Logger.getLogger(ActionMethods.class);
-
     public void sync(WebDriver driver, WebElement element) {
         try {
             Wait<WebDriver> wait = new WebDriverWait(driver, 30)

@@ -17,6 +17,8 @@ public class DeliveryPage {
     @FindBy(xpath = "//span[text()='Search for collection points']")
     public WebElement scrCollectionPntBtn;
 
+    @FindBy(xpath = "//div/h4[@data-auto-id='selected-store-header']")
+    public WebElement selectedStore;
 
     @FindBy(xpath = "//div[@data-auto-id='store-name']/strong")
     public WebElement storeName;

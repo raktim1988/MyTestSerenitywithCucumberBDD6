@@ -1,4 +1,5 @@
 package com.automation.test;
+
 import org.junit.runner.RunWith;
 import cucumber.api.CucumberOptions;
 import cucumber.api.SnippetType;
@@ -19,5 +20,4 @@ public class RunnerTest {
     public static void generateReport() {
 
     }
-
 }

@@ -1,0 +1,209 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 3141935100,
+              "status": "passed"
+            },
+            "match": {
+              "location": "SetUp.setupTest(Scenario)"
+            }
+          }
+        ],
+        "line": 4,
+        "name": "Product Shopping-End to end",
+        "description": "",
+        "id": "adidas-qa-assignment;product-shopping-end-to-end",
+        "after": [
+          {
+            "result": {
+              "duration": 3015844300,
+              "status": "passed"
+            },
+            "match": {
+              "location": "SetUp.tearDown(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 10804836600,
+              "status": "passed"
+            },
+            "line": 5,
+            "name": "User is navigated to Adidas webpage",
+            "match": {
+              "location": "StepDefinition.user_is_navigated_to_Adidas_webpage()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 6735478600,
+              "status": "passed"
+            },
+            "line": 6,
+            "name": "Click on the running link",
+            "match": {
+              "location": "StepDefinition.click_on_the_running_link()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 3440780800,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "User Clicks on the first product",
+            "match": {
+              "location": "StepDefinition.user_Clicks_on_the_first_product()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 6031733100,
+              "status": "passed"
+            },
+            "line": 8,
+            "name": "User is navigated to Product Page",
+            "match": {
+              "location": "StepDefinition.user_is_navigated_to_Product_Page()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 421058500,
+              "status": "passed"
+            },
+            "line": 9,
+            "name": "User Clicks on the Shoe Size",
+            "match": {
+              "location": "StepDefinition.user_Clicks_on_the_Shoe_Size()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 296608500,
+              "status": "passed"
+            },
+            "line": 10,
+            "name": "User Adds the item to the Bag",
+            "match": {
+              "location": "StepDefinition.user_Adds_the_item_to_the_Bag()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 3402884500,
+              "status": "passed"
+            },
+            "line": 11,
+            "name": "Customers Bag is properly populated",
+            "match": {
+              "location": "StepDefinition.bag_is_properly_populated()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 3195422500,
+              "status": "passed"
+            },
+            "line": 12,
+            "name": "Click to check the Your Bag page",
+            "match": {
+              "location": "StepDefinition.click_to_check_the_Your_Bag_page()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 375437400,
+              "status": "passed"
+            },
+            "line": 13,
+            "name": "Customer checks out",
+            "match": {
+              "location": "StepDefinition.customer_checks_out()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 2399563900,
+              "status": "passed"
+            },
+            "line": 14,
+            "name": "Verify if Customer is on Delivery page",
+            "match": {
+              "location": "StepDefinition.verify_if_Customer_is_on_Delivery_page()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 766867200,
+              "status": "passed"
+            },
+            "line": 15,
+            "name": "Customer selects From A Collection Point",
+            "match": {
+              "location": "StepDefinition.customer_selects_From_A_Collection_Point()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 1102484400,
+              "status": "passed"
+            },
+            "line": 16,
+            "name": "Enter location as \"London\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "London",
+                  "offset": 19
+                }
+              ],
+              "location": "StepDefinition.enter_location_as(String)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 5527926900,
+              "status": "passed"
+            },
+            "output": [
+              ""
+            ],
+            "line": 17,
+            "name": "Verify the correct collection points is selected",
+            "match": {
+              "location": "StepDefinition.verify_the_correct_collection_points_is_selected()"
+            },
+            "keyword": "And "
+          }
+        ]
+      }
+    ],
+    "name": "ADIDAS QA ASSIGNMENT",
+    "description": "Use the Feature file to complete the Assignment for Adidas QA test",
+    "id": "adidas-qa-assignment",
+    "keyword": "Feature",
+    "uri": "src/test/resources/TestAssignment.feature"
+  }
+]

@@ -86,7 +86,7 @@ public class StepDefinition {
             log.error("The link is not clicked and non-navigatable");
             throw ex;
         } catch (Exception ex) {
-            ex.printStackTrace();
+            log.error("The link is not clicked and non-navigatable");
             throw ex;
         }
     }
@@ -120,7 +120,7 @@ public class StepDefinition {
             log.error("Product page is not opened properly");
             throw ex;
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("Product page is not opened properly");
         }
     }
 
@@ -232,7 +232,8 @@ public class StepDefinition {
             user.sync(driver, deliveryPage.storeName);
             CollectionPointStr = deliveryPage.storeName.getText().trim();
             user.click(deliveryPage.collectHereBtn);
-            user.sync(driver, deliveryPage.storeName);
+            user.takeScreenshot(driver);
+            user.sync(driver, deliveryPage.selectedStore);
             Assert.assertEquals(collectionPage.storeAddress.getText().trim(), deliveryPage.storeAddressValidated.getText().trim());
             user.takeScreenshot(driver);
         } catch (AssertionError ex) {
@@ -243,5 +244,4 @@ public class StepDefinition {
             throw ex;
         }
     }
-
 }
