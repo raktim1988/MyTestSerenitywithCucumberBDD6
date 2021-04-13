@@ -37,8 +37,10 @@ public class SetUp {
     public static CollectionPage collectionPage;
     public static DeliveryPage deliveryPage;
     public static String ScenarioName;
+    public static AddElementPage addElementPage;
 
     public static Properties data = null;
+    public static DropDownPage dropDownPage;
 
     //Logging details
     static {
@@ -52,7 +54,6 @@ public class SetUp {
         String browser = data.getProperty("Browser");
 
         /////****************************Chrome Browser Setup********************************/////////////////////////////
-
         if (browser.contains("chrome")) {
             System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/exe/chromedriver.exe");
             ChromeOptions options = new ChromeOptions();
@@ -74,10 +75,7 @@ public class SetUp {
             DesiredCapabilities cap = new DesiredCapabilities();
             cap.setCapability(ChromeOptions.CAPABILITY, options);
             driver = new ChromeDriver(cap);
-
         }
-        //To improve: Multiple browser support
-
         //Initialize all web elements with the Page Objects
         homePageObj = PageFactory.initElements(driver, HomePage.class);
         productPageObj = PageFactory.initElements(driver, ProductPage.class);
@@ -86,7 +84,8 @@ public class SetUp {
         collectionPage = PageFactory.initElements(driver, CollectionPage.class);
         bagPage = PageFactory.initElements(driver, BagPage.class);
         deliveryPage = PageFactory.initElements(driver, DeliveryPage.class);
-
+        dropDownPage = PageFactory.initElements(driver, DropDownPage.class);
+        addElementPage = PageFactory.initElements(driver, AddElementPage.class);
         driver.manage().deleteAllCookies();
         driver.manage().window().maximize();
     }
@@ -104,5 +103,5 @@ public class SetUp {
         result.write(message);
         driver.close();
         driver.quit();
-        }
     }
+}

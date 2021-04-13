@@ -7,15 +7,13 @@ import org.openqa.selenium.support.FindBy;
 
 public class BagPage {
 
-    WebDriver driver= SetUp.driver;
-
-    @FindBy(xpath = "//div[@class='info___1Gm7E']/h5[@data-auto-id='bag-modal-product-name']")
+    @FindBy(xpath = "//h5[@data-auto-id='bag-modal-product-name']")
     public WebElement selectedShoeName;
 
-    @FindBy(xpath = "//div[@class='info___1Gm7E']/div[contains(text(), 'Size:')]")
+    @FindBy(xpath = "//div[contains(text(), 'Size:')]")
     public WebElement shoeSizeVerify;
 
-    @FindBy(xpath = "//div[@class='info___1Gm7E']/div[contains(text(), 'Quantity:')]")
+    @FindBy(xpath = "//div[contains(text(), 'Quantity:')]")
     public WebElement shoeQuantityVerify;
 
 
@@ -27,4 +25,11 @@ public class BagPage {
 
     @FindBy(xpath = "//div/h3[@data-auto-id='glass-cart-title']")
     public WebElement yourBagText;
+
+    @FindBy (xpath = "//button[@class='gl-modal__close']")
+    public WebElement modalClose;
+
+    @FindBy(xpath = "//h5[contains(text(),'Your Bag')]/following-sibling::div[contains(text(),'item')]")
+    public WebElement quantityChecker;
+
 }

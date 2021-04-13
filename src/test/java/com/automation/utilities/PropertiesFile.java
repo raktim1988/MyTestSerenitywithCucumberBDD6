@@ -25,18 +25,4 @@ public class PropertiesFile {
         return properties;
     }
 
-    public static Properties readQuery() {
-        Properties properties = null;
-        try {
-            File file = new File("Data\\Query.properties");
-            FileInputStream fileInputStream = new FileInputStream(file);
-            properties = new Properties();
-            properties.load(fileInputStream);
-            fileInputStream.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return properties;
-    }
-
 }

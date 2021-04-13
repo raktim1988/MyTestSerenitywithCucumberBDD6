@@ -1,18 +1,21 @@
 package com.automation.test;
 
+import java.util.List;
 import java.util.Properties;
-
 import com.automation.utilities.PageURLConstants;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import com.automation.pageObjects.*;
 import com.automation.utilities.ActionMethods;
 import cucumber.api.java.en.Given;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 /**
  * Author : Raktim Biswas
@@ -30,7 +33,10 @@ public class StepDefinition {
     CheckOutPage checkOutPage = SetUp.checkOutPage;
     CollectionPage collectionPage = SetUp.collectionPage;
     DeliveryPage deliveryPage = SetUp.deliveryPage;
+    DropDownPage dropDown = SetUp.dropDownPage;
+    AddElementPage addElementPage= SetUp.addElementPage;
     //Shoe Details validation
+    int saveQuantity;
     String shoeSelector;
     String shoeSize;
     String CollectionPointStr;
@@ -40,6 +46,7 @@ public class StepDefinition {
     public Properties data = SetUp.data;
     //Logger Implementation
     static Logger log = Logger.getLogger(StepDefinition.class);
+    private int elementCount;
 
     @Given("^User is navigated to Adidas webpage$")
     public void user_is_navigated_to_Adidas_webpage() throws Throwable {
@@ -52,11 +59,9 @@ public class StepDefinition {
             user.sync(driver, homePageObj.ukBtn);
             user.highlightElement(driver, homePageObj.ukBtn);
             user.click(homePageObj.ukBtn);
-
             user.sync(driver, homePageObj.goBtn);
             homePageObj.goBtn.click();
             homePageObj.goBtn.click();
-
             user.sync(driver, homePageObj.acceptTrackBtn);
             homePageObj.acceptTrackBtn.click();
             Assert.assertEquals(homePageObj.logoIcon.isDisplayed(), true);
@@ -72,8 +77,9 @@ public class StepDefinition {
 
     @When("^Click on the running link$")
     public void click_on_the_running_link() throws Throwable {
-        //This method is to click on the 'Runner'link
+        //This method is to click on the 'Runner' link
         try {
+            user.sync(driver, homePageObj.runningLink);
             user.scrollToElement(driver, homePageObj.runningLink);
             user.click(homePageObj.runningLink);
             user.sync(driver, productPageObj.shoeSelector);
@@ -101,7 +107,7 @@ public class StepDefinition {
             user.takeScreenshot(driver);
             user.click(productPageObj.shoeSelector);
         } catch (Exception ex) {
-            log.error("FIrst product can't be clicked");
+            log.error("First product can't be clicked");
             throw ex;
         }
 
@@ -131,29 +137,36 @@ public class StepDefinition {
         shoeSize = productSelectionPage.shoeSizes.get(0).getText();
         user.click(productSelectionPage.shoeSizes.get(0));
     }
+    //Adding multiple times
 
-    @Then("^User Adds the item to the Bag$")
-    public void user_Adds_the_item_to_the_Bag() throws Throwable {
-        user.sync(driver, productSelectionPage.addToBagButton);
-        user.click(productSelectionPage.addToBagButton);
+    @Then("^User Adds the item to the Bag (\\d+) times$")
+    public void user_Adds_the_item_to_the_Bag_times(int arg1) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        saveQuantity = arg1;
+        for (int i = 0; i < arg1; i++) {
+            user.sync(driver, productSelectionPage.addToBagButton);
+            user.click(productSelectionPage.addToBagButton);
+            user.sync(driver, bagPage.modalClose);
+            if (i < (arg1 - 1)) {
+                user.click(bagPage.modalClose);
+            }
+        }
     }
 
     @When("^Customers Bag is properly populated$")
     public void bag_is_properly_populated() throws Throwable {
         // Verify if the Bag overlay is proper
         try {
-            user.sync(driver, bagPage.bagPopUp);
             //Split the Strings with the Colon : field [ Size and quantity]
+            user.sync(driver, bagPage.shoeSizeVerify);
             String shoeSizeText[] = bagPage.shoeSizeVerify.getText().split(":");
-            String shoeText = shoeSizeText[0];
             String size = shoeSizeText[1].trim();
-            String shoeQuantityText[] = bagPage.shoeQuantityVerify.getText().split(":");
-            String quantityTest = shoeQuantityText[0];
-            String quantity = shoeQuantityText[1].trim();
+            String shoeQuantityText[] = bagPage.quantityChecker.getText().split(" ");
+            String quantity = shoeQuantityText[0].trim();
             //Verify the Bag with the Elements [Product Name,  Size , Quantity ]
-            Assert.assertEquals(shoeSelector.trim(), bagPage.selectedShoeName.getText().trim());
+            Assert.assertEquals(shoeSelector, bagPage.selectedShoeName.getText().trim());
             Assert.assertEquals(shoeSize.trim(), size);
-            Assert.assertEquals("1", quantity);
+            Assert.assertEquals(Integer.toString(saveQuantity), quantity);
             user.takeScreenshot(driver);
         } catch (AssertionError ex) {
             log.error("Elements are not matched");
@@ -206,7 +219,6 @@ public class StepDefinition {
             log.error("Ässertion error to check customer is in the delivery page");
             throw e;
         }
-
     }
 
     @Then("^Customer selects From A Collection Point$")
@@ -215,7 +227,7 @@ public class StepDefinition {
         user.click(deliveryPage.pickUpLoc);
     }
 
-    @Then("^Enter location as \"([^\"]*)\"$")
+    @And("^Enter location as \"([^\"]*)\"$")
     public void enter_location_as(String location) throws Throwable {
         //This method is to choose the Location as "London"- which is parameterized from the feature file
         user.sync(driver, deliveryPage.locationField);
@@ -243,5 +255,66 @@ public class StepDefinition {
             log.error("Collection points is not properly selected");
             throw ex;
         }
+    }
+    //Before each method
+
+    @Given("^User is on the desired page$")
+    public void user_is_on_the_desired_page() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        driver.navigate().to("https://the-internet.herokuapp.com");
+        user.pageLoadWait(driver);
+    }
+
+
+
+    @Then("^click on the link \"([^\"]*)\"$")
+    public void click_on_the_link(String linkNameGiven) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        System.out.println("Link name "+ linkNameGiven);
+        user.sync(driver,dropDown.getLink(linkNameGiven));
+        dropDown.getLink(linkNameGiven).click();
+    }
+
+    //Testing Dropdown values
+
+    @Then("^select dropdown field value$")
+    public void select_dropdown_field_value() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+
+        Select dropDownOption = new Select(driver.findElement(By.id("dropdown")));
+        dropDownOption.selectByIndex(0);
+        dropDownOption.selectByVisibleText("Option 1");
+    }
+
+    @Then("^pass the value as \"([^\"]*)\"$")
+    public void pass_the_value_as(String chosenValue) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        Select dropDownOption = new Select(driver.findElement(By.id("dropdown")));
+        dropDownOption.selectByVisibleText(chosenValue);
+
+    }
+
+    //Add delete elements
+
+    @Then("^Add Element (\\d+) times$")
+    public void add_Element_times(int numberOfAdd) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        elementCount = numberOfAdd;
+        user.sync(driver,addElementPage.addButton);
+        for (int i=0;i<numberOfAdd;i++)
+        {
+            addElementPage.addButton.click();
+        }
+    }
+
+    @Then("^Check the Delete button count$")
+    public void check_the_Delete_button_count() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        user.sync(driver, addElementPage.deleteButton.get(0));
+        for (int i=0; i<elementCount;i++)
+        {
+            addElementPage.deleteButton.get(0).click();
+        }
+        Assert.assertEquals(addElementPage.deleteButton.size() , 0);
     }
 }

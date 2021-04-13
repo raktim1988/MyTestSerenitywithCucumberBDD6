@@ -6,8 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class CollectionPage {
-    WebDriver driver = SetUp.driver;
-
     @FindBy(xpath = "//div[@data-auto-id='store-address']")
     public WebElement storeAddress;
 

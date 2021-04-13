@@ -7,8 +7,6 @@ import org.openqa.selenium.support.FindBy;
 
 public class ProductPage {
 
-WebDriver driver= SetUp.driver;
-
     @FindBy(xpath="//div[@class='gl-product-card__details']//span")
     public WebElement shoeSelector;
 

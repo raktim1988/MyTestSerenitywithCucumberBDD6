@@ -29,11 +29,9 @@ public class ActionMethods {
         }
     }
 
-
     public void type(WebElement element, String str) {
         element.clear();
         element.sendKeys(str.toString());
-
     }
 
     public void click(WebElement element) {
@@ -87,5 +85,10 @@ public class ActionMethods {
             }
         });
     }
+    public void jsClick(WebDriver driver,WebElement element) {
 
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+        js.executeScript("arguments[0].click();",element);
+
+    }
 }

@@ -9,8 +9,6 @@ import java.util.Set;
 
 public class CheckOutPage {
 
-    WebDriver driver = SetUp.driver;
-
     @FindBy(xpath = "//div/button[@data-auto-id='glass-checkout-button-bottom']")
     public WebElement checkOutButton;
 

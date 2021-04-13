@@ -6,8 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class DeliveryPage {
-    WebDriver driver= SetUp.driver;
-
     @FindBy(xpath = "//div[@data-auto-id='delivery-option-name']//strong[text()='From a collection point']")
     public WebElement pickUpLoc;
 

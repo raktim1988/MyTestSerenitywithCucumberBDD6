@@ -8,7 +8,7 @@ import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions(
 
-        features = {"src/test/resources/TestAssignment.feature"},
+        features = {"src/test/resources/"},
         plugin = {
                 "html:target/cucumber-html-report",
                 "json:target/cucumber.json",

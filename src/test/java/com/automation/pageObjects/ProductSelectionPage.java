@@ -9,9 +9,6 @@ import java.util.List;
 
 public class ProductSelectionPage {
 
-
-    WebDriver driver= SetUp.driver;
-
     @FindBy(xpath="//div[contains(@class,'sidebar')]//h1[@data-auto-id='product-title']/span")
     public WebElement productHeader;
 

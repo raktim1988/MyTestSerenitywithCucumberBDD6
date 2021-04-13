@@ -1,4 +1,10 @@
 -------------------------------------------------------------------------------
 Test set: com.automation.test.RunnerTest
 -------------------------------------------------------------------------------
-Tests run: 14, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 51.341 s - in com.automation.test.RunnerTest
+Tests run: 14, Failures: 0, Errors: 2, Skipped: 7, Time elapsed: 28.432 s <<< FAILURE! - in com.automation.test.RunnerTest
+Scenario: Product Shopping-End to end.And User Adds the item to the Bag  Time elapsed: 0.003 s  <<< ERROR!
+cucumber.api.PendingException: TODO: implement me
+
+Scenario: Product Shopping-End to end  Time elapsed: 0.003 s  <<< ERROR!
+cucumber.api.PendingException: TODO: implement me
+
