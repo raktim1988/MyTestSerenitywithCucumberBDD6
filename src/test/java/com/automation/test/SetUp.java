@@ -38,6 +38,7 @@ public class SetUp {
     public static DeliveryPage deliveryPage;
     public static String ScenarioName;
     public static AddElementPage addElementPage;
+    public static LoginPage loginPage;
 
     public static Properties data = null;
     public static DropDownPage dropDownPage;
@@ -86,6 +87,7 @@ public class SetUp {
         deliveryPage = PageFactory.initElements(driver, DeliveryPage.class);
         dropDownPage = PageFactory.initElements(driver, DropDownPage.class);
         addElementPage = PageFactory.initElements(driver, AddElementPage.class);
+        loginPage=PageFactory.initElements(driver,LoginPage.class);
         driver.manage().deleteAllCookies();
         driver.manage().window().maximize();
     }

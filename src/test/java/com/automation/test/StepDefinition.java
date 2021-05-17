@@ -1,9 +1,10 @@
 package com.automation.test;
 
-import java.util.List;
-import java.util.Properties;
+import com.automation.pageObjects.*;
+import com.automation.utilities.ActionMethods;
 import com.automation.utilities.PageURLConstants;
 import cucumber.api.java.en.And;
+import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.apache.log4j.Logger;
@@ -11,11 +12,9 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import com.automation.pageObjects.*;
-import com.automation.utilities.ActionMethods;
-import cucumber.api.java.en.Given;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+
+import java.util.Properties;
 
 /**
  * Author : Raktim Biswas
@@ -34,7 +33,8 @@ public class StepDefinition {
     CollectionPage collectionPage = SetUp.collectionPage;
     DeliveryPage deliveryPage = SetUp.deliveryPage;
     DropDownPage dropDown = SetUp.dropDownPage;
-    AddElementPage addElementPage= SetUp.addElementPage;
+    LoginPage loginPage = SetUp.loginPage;
+    AddElementPage addElementPage = SetUp.addElementPage;
     //Shoe Details validation
     int saveQuantity;
     String shoeSelector;
@@ -266,12 +266,10 @@ public class StepDefinition {
     }
 
 
-
     @Then("^click on the link \"([^\"]*)\"$")
     public void click_on_the_link(String linkNameGiven) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-        System.out.println("Link name "+ linkNameGiven);
-        user.sync(driver,dropDown.getLink(linkNameGiven));
+        user.sync(driver, dropDown.getLink(linkNameGiven));
         dropDown.getLink(linkNameGiven).click();
     }
 
@@ -300,9 +298,8 @@ public class StepDefinition {
     public void add_Element_times(int numberOfAdd) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
         elementCount = numberOfAdd;
-        user.sync(driver,addElementPage.addButton);
-        for (int i=0;i<numberOfAdd;i++)
-        {
+        user.sync(driver, addElementPage.addButton);
+        for (int i = 0; i < numberOfAdd; i++) {
             addElementPage.addButton.click();
         }
     }
@@ -311,10 +308,46 @@ public class StepDefinition {
     public void check_the_Delete_button_count() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
         user.sync(driver, addElementPage.deleteButton.get(0));
-        for (int i=0; i<elementCount;i++)
-        {
+        for (int i = 0; i < elementCount; i++) {
             addElementPage.deleteButton.get(0).click();
         }
-        Assert.assertEquals(addElementPage.deleteButton.size() , 0);
+        Assert.assertEquals(addElementPage.deleteButton.size(), 0);
+    }
+
+
+    //Added for Scenario outline
+
+    @Then("^User clicks on the \"([^\"]*)\" link$")
+    public void user_clicks_on_the_link(String chosenLink) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        user.sync(driver, loginPage.headertext);
+        System.out.println("the link is " + loginPage.getLink(chosenLink).getText());
+        loginPage.getLink(chosenLink).click();
+    }
+
+    @And("^Provide \"([^\"]*)\" and \"([^\"]*)\"$")
+    public void provide_and(String username, String password) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        user.sync(driver, loginPage.loginPageHeader);
+        System.out.println("Username is" + username + "Password is " + password);
+        loginPage.userName.sendKeys(username);
+        loginPage.password.sendKeys(password);
+        user.takeScreenshot(driver);
+        loginPage.loginButton.click();
+    }
+
+    @Then("^Verify successful login$")
+    public void verify_successful_login() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        if (!loginPage.loginSuccess.isEmpty()) {
+            log.info("Successful Login");
+            user.takeScreenshot(driver);
+        }
+        else
+        {
+            System.out.println("Login Error" + loginPage.loginError.getText());
+            log.info(loginPage.loginError.getText());
+            user.takeScreenshot(driver);
+        }
     }
 }

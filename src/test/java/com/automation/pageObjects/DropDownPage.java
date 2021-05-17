@@ -12,10 +12,8 @@ public class DropDownPage {
 @FindBy(xpath = "//div[@id='content']")
     public WebElement dropDown;
 
-
     public WebElement getLink(String linkName) {
         WebElement link=driver.findElement(By.xpath("//li/a[contains(text(),'"+linkName+"')]"));
-        //WebElement link=driver.findElement(By.xpath("//li/a[contains(text(),'Dropdown')]"));
         return link;
     }
 }

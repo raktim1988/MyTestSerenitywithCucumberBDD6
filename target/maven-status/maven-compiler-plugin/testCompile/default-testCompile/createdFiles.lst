@@ -12,6 +12,7 @@ com\automation\pageObjects\HomePage.class
 com\automation\test\SetUp.class
 com\automation\pageObjects\ProductSelectionPage.class
 com\automation\utilities\ActionMethods.class
+com\automation\pageObjects\LoginPage.class
 com\automation\pageObjects\CheckOutPage.class
 com\automation\pageObjects\CollectionPage.class
 com\automation\pageObjects\ProductPage.class

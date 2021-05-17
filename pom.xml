@@ -37,6 +37,9 @@
 			<artifactId>cucumber-reporting</artifactId>
 			<version>2.2.0</version>
 		</dependency>
+
+		<!-- For serenity-->
+
 		<!-- Dependency For Log4j -->
 		<dependency>
 			<groupId>log4j</groupId>
