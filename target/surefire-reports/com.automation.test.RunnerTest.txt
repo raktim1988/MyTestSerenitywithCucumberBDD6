@@ -1,7 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.automation.test.RunnerTest
--------------------------------------------------------------------------------
-Tests run: 7, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 109.292 s <<< FAILURE! - in com.automation.test.RunnerTest
-Product Shopping-End to end(ADIDAS QA ASSIGNMENT)  Time elapsed: 37.316 s  <<< ERROR!
-java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
-
