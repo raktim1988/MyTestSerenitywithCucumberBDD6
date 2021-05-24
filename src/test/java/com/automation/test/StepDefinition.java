@@ -3,16 +3,17 @@ package com.automation.test;
 import com.automation.pageObjects.*;
 import com.automation.utilities.ActionMethods;
 import com.automation.utilities.PageURLConstants;
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.When;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.And;
+
 
 import java.util.Properties;
 
@@ -271,6 +272,7 @@ public class StepDefinition {
         // Write code here that turns the phrase above into concrete actions
         user.sync(driver, dropDown.getLink(linkNameGiven));
         dropDown.getLink(linkNameGiven).click();
+        user.takeScreenshot(driver);
     }
 
     //Testing Dropdown values
@@ -282,6 +284,7 @@ public class StepDefinition {
         Select dropDownOption = new Select(driver.findElement(By.id("dropdown")));
         dropDownOption.selectByIndex(0);
         dropDownOption.selectByVisibleText("Option 1");
+        user.takeScreenshot(driver);
     }
 
     @Then("^pass the value as \"([^\"]*)\"$")
@@ -302,6 +305,7 @@ public class StepDefinition {
         for (int i = 0; i < numberOfAdd; i++) {
             addElementPage.addButton.click();
         }
+        user.takeScreenshot(driver);
     }
 
     @Then("^Check the Delete button count$")
@@ -310,7 +314,9 @@ public class StepDefinition {
         user.sync(driver, addElementPage.deleteButton.get(0));
         for (int i = 0; i < elementCount; i++) {
             addElementPage.deleteButton.get(0).click();
+            user.takeScreenshot(driver);
         }
+
         Assert.assertEquals(addElementPage.deleteButton.size(), 0);
     }
 
@@ -342,9 +348,7 @@ public class StepDefinition {
         if (!loginPage.loginSuccess.isEmpty()) {
             log.info("Successful Login");
             user.takeScreenshot(driver);
-        }
-        else
-        {
+        } else {
             System.out.println("Login Error" + loginPage.loginError.getText());
             log.info(loginPage.loginError.getText());
             user.takeScreenshot(driver);

@@ -1,10 +1,11 @@
 package com.automation.test;
 
-import java.awt.*;
-import java.io.File;
-import java.net.URI;
 import java.util.Properties;
 
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
+import org.apache.log4j.Logger;
 import org.apache.log4j.xml.DOMConfigurator;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -17,9 +18,6 @@ import org.openqa.selenium.support.PageFactory;
 import com.automation.pageObjects.*;
 import com.automation.utilities.PropertiesFile;
 
-import cucumber.api.Scenario;
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
 
 /**
  * Author:Raktim Biswas
@@ -47,6 +45,8 @@ public class SetUp {
     static {
         DOMConfigurator.configure("log4j.xml");
     }
+    static Logger log = Logger.getLogger(StepDefinition.class);
+
 
     @Before
     public static void setupTest(Scenario scenario) throws Exception {
@@ -95,14 +95,11 @@ public class SetUp {
     @After()
     public static void tearDown(Scenario result) throws Exception {
         if (result.isFailed()) {
-            result.write(result.toString());
-            result.write(result.getStatus());
-            result.write("ScreenShot taken for failed step ");
+
             byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-            result.write(message);
-            result.embed(screenshot, "image/png");
+            log.info(message);
         }
-        result.write(message);
+        log.info(message);
         driver.close();
         driver.quit();
     }
