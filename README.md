@@ -1,11 +1,11 @@
-# TestAssignmentAdidas
-The purpose of the assignment is to Automate the e-Commerce site of Adidas-UK
+# Serenity Integration with Cucumber 6 for customer reporting
+The purpose of the assignment is to integrate Serenity reporting feature with my Testcases Cucumber BDD
 
 Framework used :
 
-    Selenium with Cucumber BDD : Feature driven testing
+    Selenium with Cucumber6 BDD : Feature driven testing
 
-    Surefire Plugin for reporting
+    Serenity Plugin for reporting
     
     log4j for Logging
 
