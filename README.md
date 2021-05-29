@@ -11,7 +11,7 @@ Framework used :
 
 Git Repository Link:
 
-    https://github.com/raktim1988/TestAssignmentAdidas
+    https://github.com/raktim1988/MyTestSerenitywithCucumberBDD6.git
 
 Addiitonal implementation:
 
