@@ -2,9 +2,7 @@ package com.automation.utilities;
 
 import com.automation.test.SetUp;
 import org.apache.commons.io.FileUtils;
-import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -21,7 +19,7 @@ public class ActionMethods {
 
     public void sync(WebDriver driver, WebElement element) {
         try {
-            Wait<WebDriver> wait = new WebDriverWait(driver, 30)
+            Wait<WebDriver> wait = new WebDriverWait(driver, 60)
                     .ignoring(StaleElementReferenceException.class);
             wait.until(ExpectedConditions.visibilityOf(element));
         } catch (Exception e) {
@@ -73,18 +71,6 @@ public class ActionMethods {
 
     }
 
-    //Important method - wait until the driver with JS is ready
-    public void pageLoadWait(final WebDriver driver) {
-
-        WebDriverWait wait = new WebDriverWait(driver, 180);
-        wait.until(new ExpectedCondition<Boolean>() {
-            public Boolean apply(WebDriver wdriver) {
-                return ((JavascriptExecutor) driver).executeScript(
-                        "return document.readyState"
-                ).equals("complete");
-            }
-        });
-    }
     public void jsClick(WebDriver driver,WebElement element) {
 
         JavascriptExecutor js = (JavascriptExecutor)driver;

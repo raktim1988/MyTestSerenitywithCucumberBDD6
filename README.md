@@ -1,9 +1,18 @@
-# TestAssignmentAdidas
-The purpose of the assignment is to Automate the e-Commerce site of Adidas-UK
+# TestAssignmentABNAmro
+The purpose of the assignment is to Automate the e-Commerce site of ABN Amro- provate banking
+
+Language used :
+
+    Java 11
+    Cucumber - gherkin language
 
 Framework used :
+    
+    Selenium with Cucumber BDD : Feature driven testing 
 
-    Selenium with Cucumber BDD : Feature driven testing
+Design Pattern : 
+
+    Page Object Mmodel
 
     Surefire Plugin for reporting
     
@@ -13,13 +22,11 @@ Git Repository Link:
 
     https://github.com/raktim1988/MyTestSerenitywithCucumberBDD6.git
 
-Addiitonal implementation:
+Additional implementation:
 
     CI integration with Jenkins; hosted in my localhost
      
     
 Observations:
 
-    The Application uses data-auto-id : which makes the web-application automation quite seamless and less flaky 
-    
-    SVG overlays are sometimes tricky to handle
+   

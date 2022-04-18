@@ -1,10 +1,11 @@
 package com.automation.test;
 
-import java.awt.*;
-import java.io.File;
-import java.net.URI;
-import java.util.Properties;
-
+import com.automation.pages.*;
+import com.automation.utilities.PropertiesFile;
+import cucumber.api.Scenario;
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.log4j.xml.DOMConfigurator;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -14,12 +15,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.PageFactory;
 
-import com.automation.pageObjects.*;
-import com.automation.utilities.PropertiesFile;
-
-import cucumber.api.Scenario;
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
+import java.util.Properties;
 
 /**
  * Author:Raktim Biswas
@@ -28,20 +24,13 @@ import cucumber.api.java.Before;
 public class SetUp {
     public static WebDriver driver;
     //Page Object details
-    public static HomePage homePageObj;
+    public static HomePage homePage;
     public static String message = "";
-    public static ProductPage productPageObj;
-    public static ProductSelectionPage productSelectionPage;
-    public static BagPage bagPage;
-    public static CheckOutPage checkOutPage;
-    public static CollectionPage collectionPage;
-    public static DeliveryPage deliveryPage;
+    public static CustomerDetailsPage customerDetailsPage;
+    public static CustomerContactPage customerContactPage;
     public static String ScenarioName;
-    public static AddElementPage addElementPage;
-    public static LoginPage loginPage;
-
+    public static ClosingQuestionPage closingQuestionPage;
     public static Properties data = null;
-    public static DropDownPage dropDownPage;
 
     //Logging details
     static {
@@ -51,45 +40,32 @@ public class SetUp {
     @Before
     public static void setupTest(Scenario scenario) throws Exception {
         ScenarioName = scenario.getName();
-        data = PropertiesFile.readPropertiesFile();
+        data = PropertiesFile.readPropertiesFile("input");
+        DesiredCapabilities cap = new DesiredCapabilities();
         String browser = data.getProperty("Browser");
-
-        /////****************************Chrome Browser Setup********************************/////////////////////////////
+        ChromeOptions options = new ChromeOptions();// You can set this property elsewhere
+        String headless = data.getProperty("headless");
+        //Chrome options setup
         if (browser.contains("chrome")) {
-            System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/exe/chromedriver.exe");
-            ChromeOptions options = new ChromeOptions();
-            options.addArguments("--allow-running-insecure-content");
-            options.addArguments("--allow-insecure-websocket-from-https-origin");
-            options.addArguments("disable-extensions");
-            options.addArguments("allow-running-insecure-content");
-            options.addArguments("--start-maximized");
-            options.addArguments("disable-extensions");
-            options.addArguments("disable-plugins");
-            options.addArguments("--enable-precise-memory-info");
-            options.addArguments("--disable-popup-blocking");
-            options.addArguments("--disable-default-apps");
-            options.addArguments("test-type=browser");
-            options.addArguments("disable-infobars");
-            options.setExperimentalOption("useAutomationExtension", false);
-            //To disable the pop-up: Chrome browser is controlled by Automation Software
-            options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
-            DesiredCapabilities cap = new DesiredCapabilities();
+            cap.setCapability("browserVersion", "97");
+            cap.setCapability("platformName", "Windows XP");
+        //Check for headless run
+        if (headless=="true")
+        {
+            options.addArguments("--headless");
+        }
             cap.setCapability(ChromeOptions.CAPABILITY, options);
+            WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver(cap);
+            String Url = data.getProperty("baseUrl");
+            driver.navigate().to(Url);
+            driver.manage().window().maximize();
         }
         //Initialize all web elements with the Page Objects
-        homePageObj = PageFactory.initElements(driver, HomePage.class);
-        productPageObj = PageFactory.initElements(driver, ProductPage.class);
-        productSelectionPage = PageFactory.initElements(driver, ProductSelectionPage.class);
-        checkOutPage = PageFactory.initElements(driver, CheckOutPage.class);
-        collectionPage = PageFactory.initElements(driver, CollectionPage.class);
-        bagPage = PageFactory.initElements(driver, BagPage.class);
-        deliveryPage = PageFactory.initElements(driver, DeliveryPage.class);
-        dropDownPage = PageFactory.initElements(driver, DropDownPage.class);
-        addElementPage = PageFactory.initElements(driver, AddElementPage.class);
-        loginPage=PageFactory.initElements(driver,LoginPage.class);
-        driver.manage().deleteAllCookies();
-        driver.manage().window().maximize();
+        homePage = PageFactory.initElements(driver, HomePage.class);
+        customerDetailsPage=PageFactory.initElements(driver,CustomerDetailsPage.class);
+        customerContactPage=PageFactory.initElements(driver,CustomerContactPage.class);
+        closingQuestionPage=PageFactory.initElements(driver,ClosingQuestionPage.class);
     }
 
     @After()
